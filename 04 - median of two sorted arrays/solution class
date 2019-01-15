@@ -1,0 +1,50 @@
+class Solution {
+public:
+	double calculate(vector<int>& nums1, vector<int>& nums2 ,size_t m,size_t n )
+	{
+		size_t a = (n+m)/2;
+		if( (n+m)%2 )
+		{
+			if( a+1 < m ) return (nums1[a]+nums1[a+1])/2;
+			if( a > m ) return (nums2[a-m]+nums2[a-m+1])/2;
+			if( a == m) return (nums1[m-1]+nums2[0])/2;
+		}
+		
+		if( a <= m ) return nums1[a-1];
+		else return nums2[a-m];
+		
+	}
+	
+	double getKth( vector<int>::iterator a,int m,vector<int>::iterator b,int n,int k)
+	{
+		if(m > n) getKth(b, n, a, m, k);
+		if(m == 0) return b[k-1];
+		if(k == 1) return min(a[0],b[0]);
+		int pa = min( k/2 , m ); int pb = n-pa;
+		
+		if(a[pa-1] < b[pb-1])
+			return getKth(a+pa, m-pa, b, n, k-pa);
+		else if(a[pa-1] > b[pb-1])
+			return getKth(a, m, b+pb, n-pb, k-pb);
+		else return a[pa-1];
+	}
+	
+	double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+		size_t m = nums1.size();
+		size_t n = nums2.size();
+		if( nums1[0] > nums2[ n-1 ] )
+			return calculate(nums1,nums2,m,n);
+		if( nums2[0] > nums1[ m-1 ] )
+			return calculate(nums2,nums1,n,m);
+		//Before this line, I deal with a kind of special situation.
+		//And below this, I will try to deal with the normal situation.
+		//As the item asked, I have to control the time complexity under O(log(m+n))
+		//So this item should be solved with Binary Search.
+		
+		if( (m+n) % 2 )
+			return getKth(nums1.begin(), m, nums2.begin(), n, (m+n)/2+1 );
+		else return (getKth(nums1.begin(), m, nums2.begin(), n, (m+n)/2 )+getKth(nums1.begin(), m, nums2.begin(), n, (m+n)/2+1 ))/2;
+		
+		
+	}
+};
