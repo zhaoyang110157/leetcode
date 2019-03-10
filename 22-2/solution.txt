@@ -1,0 +1,23 @@
+class Solution {
+public:
+     vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        fun("",res,n,0,0);
+        return res;
+    }
+    void fun(string cur, vector<string> &res, int n,int left, int right)
+    {
+        if(right==n)
+        {
+            res.push_back(cur);
+        }
+        if(left<n)
+        {
+            fun(cur+'(', res, n, left+1,right);
+        }
+        if(left>right)
+        {
+            fun(cur+')',res,n, left, right+1);
+        }
+    }
+};
