@@ -1,0 +1,46 @@
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) {
+        int vsize = words.size();
+        int ssize = s.length();
+        int wsize = words[0].length();
+        map<string, int>::iterator iter;
+        vector<int> res;
+        map<string,int> dir;
+        for(int i = 0; i < wsize; i++){
+            dir[words[i]] = i+1;
+        }
+        vector<int> vtemp;
+        for(int i = 0; i < ssize - wsize; i++){
+            string temp = s.substr(i,i+wsize-1);
+            iter = dir.find(temp);
+            if(iter != dir.end()){
+                vtemp.push_back(iter->second);
+            }else{
+                vtemp.push_back(0);
+            }
+        }
+        for(int i = 0;i < ssize - wsize + 1; i++){
+            bool* btemp = new bool[wsize];
+            for(int j = 0; j < wsize; j++){
+                int itemp = vtemp[i+j];
+                if(itemp == 0){
+                    break;
+                }else{
+                    if(btemp[itemp-1]){
+                        break;
+                    }else{
+                        btemp[itemp-1] = true;
+                    }
+                }
+            }
+            bool result = true;
+            for(int i = 0; i < wsize && result; i++){
+                result = btemp[i];
+            }
+            if(result)
+                res.push_back(i);
+        }
+        return res;
+    }
+};
