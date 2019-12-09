@@ -41,3 +41,8 @@ public:
         reverse(nums,i+1);
     }
 };
+
+/*
+next_permutation(nums.begin(),nums.end());
+这一行代码可以直接搞定整个函数，但是效率比较低
+*/
