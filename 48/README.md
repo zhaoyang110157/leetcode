@@ -1,4 +1,5 @@
 ##原始算法
+```
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
@@ -15,7 +16,7 @@ public:
         }
     }
 };
-
+```
 ###思路
 *算法本质上是人类思维，同时进行分块。没有进行算法优化，在人类思维上，我们需要选定特定的点 ( i , j )，进行转换，如下图。
 ![img](./images/1.png)
