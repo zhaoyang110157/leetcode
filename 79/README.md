@@ -34,7 +34,7 @@ public:
                 tmp = tmp || reexist(board,i-1,j,loc+1);
                 mark[i-1][j] = false;
             }
-            if(b && !tmp){
+            if(b && !tmp){// &&！tmp 部分是为了剪枝
                 mark[i+1][j] = true;
                 tmp = tmp || reexist(board,i+1,j,loc+1);
                 mark[i+1][j] = false;
