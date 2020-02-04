@@ -5,9 +5,7 @@
 
 # 算法
 
-```python
-
-```
+![img](./image/s.png)
 
 ```c++
 class Solution {
@@ -21,15 +19,17 @@ public:
         int f[3];
         f[2] = 1;
         f[1] = 1;
-        for(int i = 1; i < s.length(); i ++)
+        int size = s.length();
+        for(int i = 1; i < size; i ++)
         {
             // 位移
             f[0] = f[1];
             f[1] = f[2];
             // 方法判断累加
-            if(s[i] == '0') f[2] = 0;
-            int tmp = (s[i - 1] - '0') * 10 + s[i] - '0';
-            if(tmp > 9 && tmp < 27) f[2] += f[0];
+            if(s[i] == '0') f[2] = 0;//尾数本身不能算一个
+            int tmp = (s[i - 1] - '0') * 10 + s[i] - '0';//计算两位数
+            if(tmp > 9 && tmp < 27) f[2] += f[0];//保证前一位不是0
+            //这里实际上筛去了两个0的情况，但是为什么01不行呢
         }
         return f[2];
     }
