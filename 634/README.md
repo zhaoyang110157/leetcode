@@ -50,13 +50,16 @@ public:
         for(int i = 2; i <= n; i++){
             m *= i;
         }
-        for(int i = 2; i < n; i++){
+        for(int i = 2; i <= n; i++){
             m /= i;
             res += m*mark;
             mark = -mark;
         }
-        return res%(100000007);
+        return res%(1000000007);
     }
 };//但是我不知道这个算法有什么问题，它老是不对！
+//它在地下几个数完全没问题啊，从21开始就出问题
 ```
+
+
 
