@@ -49,13 +49,14 @@ public:
         while(p || !s.empty()){
             if(p){
                 s.push(p);
-                p=p->left;
+                p=p->left;//先左边走到头，把所有的左边全部放进去
             }else{
+                //左边空了，开始拿s，也就是第一个父节点，其实也是第一个左节点
                 //回到父节点后，马上进入父结点的 右结点
                 p = s.top();
                 ans.push_back(p->val);
                 s.pop();
-                p=p->right;
+                p=p->right;//左边进行操作之后，马上往右边
             }
         }
         return ans;
