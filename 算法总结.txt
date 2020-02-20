@@ -14,3 +14,4 @@ accumulate
 priority——queue
 单调栈
 string find rfind（从右向左）01.01
+异或来判定出现单次 a^b^a = (a^a)^b = 0^b = b
