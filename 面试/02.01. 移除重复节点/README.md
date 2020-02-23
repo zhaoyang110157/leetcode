@@ -49,6 +49,30 @@ public:
         }
         return head;
     }
+	ListNode* removeDuplicateNodes1(ListNode* head) {
+        //pretty better one
+        if(head == nullptr || head->next == nullptr)    
+            return head;
+        map<int,bool> dic;   
+        ListNode* cur = head->next,*pre = head;
+        dic[pre->val] = true;
+        while(cur){
+            if(dic.count(cur->val) != 0){
+                ListNode* tmp = cur->next;
+                if(tmp != nullptr){
+                    pre->next = tmp;
+                }else{
+                    pre->next = nullptr;
+                }
+                cur = cur->next;
+            }else{
+                dic[cur->val] = true;
+                pre = cur;
+                cur = cur->next;
+            }
+        }
+        return head;
+    }
 };
 ```
 
