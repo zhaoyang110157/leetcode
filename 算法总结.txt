@@ -15,3 +15,6 @@ priority——queue
 单调栈
 string find rfind（从右向左）01.01
 异或来判定出现单次 a^b^a = (a^a)^b = 0^b = b   
+二叉树 	中序遍历，左中右
+	前序遍历   中左右，
+	后序遍历	左右中
