@@ -10,7 +10,7 @@ bfs
 叠加方法（找规律）
 前缀余数方法 974：
 	相同余数之间的两个数之间必定有可取模的数组。
-sort cmp重载973
+sort cmp重载973 堆箱子
 accumulate
 priority——queue
 单调栈
