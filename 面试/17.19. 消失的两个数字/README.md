@@ -52,5 +52,39 @@ public:
 };
 ```
 
+针对性的三个算法！
+
+1、可以通过求和得到两个缺失的数的和，然后缩小范围
+
+2、通过异或的方法。 A^B^A = B利用这个可以最后得到缺失的两个数的异或，则可以得到差值
+
+```c++
+-> 找到缺失的两个数
+
+class Solution {
+public:
+    vector<int> missingTwo(vector<int>& nums) {
+        int ans = 0, n = nums.size();
+        for (int i = 1; i <= n + 2; i ++) ans ^= i;
+        for (auto x: nums) ans ^= x;
+
+        int one = 0;
+        int diff = ans & -ans; 
+        for (int i = 1; i <= n + 2; i ++)
+            if (diff & i)
+                one ^= i; // ?
+        for (auto x: nums)
+            if (diff & x) 
+                one ^= x;
+        return {one, one ^ ans};
+    }
+};
+```
 
 
+
+
+
+
+
+https://leetcode-cn.com/problems/missing-two-lcci/solution/zhuan-zhi-xiao-shi-de-shu-de-san-chong-jie-fa-by-w/
